@@ -20,6 +20,17 @@ body{
     /*opacity: 1;*/
   }
   
+  .currentLangContainer{
+    width: 100vw;
+    /*border: 2px solid red;*/
+    display: flex;
+    /*align-items: center;*/
+    justify-content: center;
+    margin: 10px;
+    font-weight: bolder;
+    font-size: 27px;
+  }
+
   .langOption-container{
     /*border: 2px solid green;*/
     margin-bottom: 10px;
@@ -27,12 +38,27 @@ body{
     flex-wrap: wrap;
     justify-content: center;
   }
+
+  .btn-group{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+  }
+
+  .btn-secondary{
+    margin-right: 2px;
+    margin-left: 2px;
+  }
   
   .btn-lang{
     outline: none;
     border: none;
     font-size: 15px;
-    background-color: #32CD32;
+    /*background-color: #32CD32;*/
+    background-color: black;
+    color: white;
+    font-size: 15px;
+    font-weight: bolder;
     margin: 5px;
     padding: 10px;
     border-radius: 5px;
@@ -56,38 +82,65 @@ body{
   }
   
   .translation-container{
-    position: absolute;
+    /*position: absolute;*/
     margin-top: 10px;
-    border: 2px solid red;
+    /*border: 2px solid red;*/
     text-align: center;
     /*padding: 15px;*/
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-    height: 10vh;
-    width: 60vw;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    width: 100vw;/*60vw*/
     /* height: fit-content;
     width: fit-content; */
+    /*margin: 10%;*/
   }
   
+  .btn-wrapper{
+    margin: auto;
+    /*background-color: white;*/
+    height: fit-content;
+    max-width: 30vw;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 14px;
+    padding-top: 1px;
+    border-radius: 12px;
+  }
+
   .btn-translation{
+    margin-left: 3px;
+    margin-right: 3px;
     margin: 3px;
     font-size: 18px;
     border: none;
     outline: none;
     border-radius: 5px;
-    background-color: teal;
+    /*background-color: teal;*/
+    background-color: black;
+    color: white;
     padding: 6px;
   }
   
+  @media (max-width: 800px) {
+    .textbox {
+      width: 80vw;
+    }
+  
+    .translation-container{
+      width: 100vw;/*60vw*/
+    }
+  }
+
   @media (max-width: 600px) {
     .textbox {
       width: 80vw;
     }
   
     .translation-container{
-      position: none;
-      margin: 10%;
+      width: 100vw;/*60vw*/
+      /*position: none;
+      margin: 10%;*/
     }
   }

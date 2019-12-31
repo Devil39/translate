@@ -1,4 +1,4 @@
-body{
+/*body{
   background-image: url('./assets/6344403/3260107.jpg');
   background-size: cover;
 }
@@ -10,18 +10,15 @@ body{
   right: 0;
   bottom: 0;
   margin: auto;
-  /*border: 2px solid red;*/
   height: fit-content;
   width: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /*opacity: 1;*/
 }
 
 .langOption-container{
-  /*border: 2px solid green;*/
   margin-bottom: 10px;
   display: flex;
   flex-wrap: wrap;
@@ -39,16 +36,13 @@ body{
 }
 
 .textbox-container{
-  /*align-self: center;*/
   display: flex;
 }
 
 .textbox{
   width: 50%;
   height: 5%;
-  /*text-align: center;*/
   margin: auto;
-  /*vertical-align: center;*/
   border-radius: 15px;
   padding: 10px;
   outline: none;
@@ -60,15 +54,9 @@ body{
   margin-top: 10px;
   border: 2px solid red;
   text-align: center;
-  /*padding: 15px;*/
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   height: 10vh;
   width: 60vw;
   display: flex;
-  /* height: fit-content;
-  width: fit-content; */
 }
 
 .btn-translation{
@@ -90,4 +78,4 @@ body{
     position: none;
     margin: 10%;
   }
-}
+}*/

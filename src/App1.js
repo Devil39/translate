@@ -11,7 +11,8 @@ class App extends React.Component{
       translation: "",
       loading: false,
       translation_list: "",
-      disabled: false
+      disabled: false,
+      lang: "hindi"
     };
   }
 
@@ -47,6 +48,10 @@ class App extends React.Component{
     cookie.save('translateWebsite', JSON.stringify({
       "lang": event.target.value
     }));
+    this.setState({
+      lang: event.target.value
+    });
+    document.getElementById("textarea").focus();
   }
 
   fetchCall=(a, disable)=>{
@@ -59,7 +64,7 @@ class App extends React.Component{
        });
      }
     return new Promise((resolve, reject)=>{
-      fetch(`http://146.148.85.67/processWordJSON?inString=${a}&lang=${cookie.load('translateWebsite').lang}`,{
+      fetch(`${process.env.REACT_APP_API_URL}?inString=${a}&lang=${cookie.load('translateWebsite').lang}`,{
         //fetch('https://xlit.quillpad.in/quillpad_backend2/processWordJSON?lang=tamil&inString=namast',{
           method: "get",
       })
@@ -107,6 +112,10 @@ class App extends React.Component{
     //console.log(event.key);
     //console.log(String.fromCharCode(event.keyCode));
     //if((event.key>='a' && event.key<='z') || (event.key>='A' && event.key<='Z'))
+    if(this.state.lang==="english")
+     {
+       return;
+     }
     if(event.key.length===1 && ((event.key>='a' && event.key<='z') || (event.key>='A' && event.key<='Z')))
      {
        //console.log(event.key);
@@ -321,6 +330,7 @@ class App extends React.Component{
   render(){
     return (
       <div className="main-container"><div>
+            <div className="currentLangContainer">Current Language: {this.state.lang.toUpperCase()}</div>
             <div className="langOption-container">
                 <button type="button" className="btn-lang" onClick={this.langChange} value="hindi">Hindi</button>
                 <button type="button" className="btn-lang" onClick={this.langChange} value="tamil">Tamil</button>
@@ -332,7 +342,23 @@ class App extends React.Component{
                 <button type="button" className="btn-lang" onClick={this.langChange} value="malayalam">Malayalam</button>
                 <button type="button" className="btn-lang" onClick={this.langChange} value="punjabi">Punjabi</button>
                 <button type="button" className="btn-lang" onClick={this.langChange} value="nepali">Nepali</button>
+                <button type="button" className="btn-lang" onClick={this.langChange} value="english">English</button>
             </div>
+            {/*<div className="btn-group" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-secondary">Left</button>
+              <button type="button" class="btn btn-secondary">Middle</button>
+              <button type="button" class="btn btn-secondary">Right</button>
+              <button type="button" className="btn btn-secondary" onClick={this.langChange} value="hindi">Hindi</button>
+              <button type="button" className="btn btn-secondary" onClick={this.langChange} value="tamil">Tamil</button>
+              <button type="button" className="btn btn-secondary" onClick={this.langChange} value="telugu">Telugu</button>
+              <button type="button" className="btn btn-secondary" onClick={this.langChange} value="bengali">Bengali</button>
+              <button type="button" className="btn btn-secondary" onClick={this.langChange} value="gujarati">Gujarati</button>
+              <button type="button" className="btn btn-secondary" onClick={this.langChange} value="marathi">Marathi</button>
+              <button type="button" className="btn btn-secondary" onClick={this.langChange} value="kannada">Kannada</button>
+              <button type="button" className="btn btn-secondary" onClick={this.langChange} value="malayalam">Malayalam</button>
+              <button type="button" className="btn btn-secondary" onClick={this.langChange} value="punjabi">Punjabi</button>
+              <button type="button" className="btn btn-secondary" onClick={this.langChange} value="nepali">Nepali</button>
+              </div>*/}
             <div className="textbox-container">
                 <textarea className="textbox" id="textarea" disabled={this.state.disabled} rows="10" cols="60" onKeyUp={(event)=>{
                   //this.changeText(event);
@@ -347,7 +373,7 @@ class App extends React.Component{
                   ?<div>
                     <p><button type="button" className="btn-translation">Loading...</button></p>
                   </div>
-                  :<div>
+                  :<div className="btn-wrapper">
                       {/*<p>Namastey Duniyaa!</p>*/}
                       <p>{this.state.translations}</p>
                       {
