@@ -1,38 +1,93 @@
-.App {
-  text-align: center;
+body{
+  background-image: url('./assets/6344403/3260107.jpg');
+  background-size: cover;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main-container{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  /*border: 2px solid red;*/
+  height: fit-content;
+  width: fit-content;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  /*opacity: 1;*/
 }
 
-.App-link {
-  color: #61dafb;
+.langOption-container{
+  /*border: 2px solid green;*/
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.btn-lang{
+  outline: none;
+  border: none;
+  font-size: 15px;
+  background-color: #32CD32;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.textbox-container{
+  /*align-self: center;*/
+  display: flex;
+}
+
+.textbox{
+  width: 50%;
+  height: 5%;
+  /*text-align: center;*/
+  margin: auto;
+  /*vertical-align: center;*/
+  border-radius: 15px;
+  padding: 10px;
+  outline: none;
+  font-size: 15px;
+}
+
+.translation-container{
+  position: absolute;
+  margin-top: 10px;
+  border: 2px solid red;
+  text-align: center;
+  /*padding: 15px;*/
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  height: 10vh;
+  width: 60vw;
+  display: flex;
+  /* height: fit-content;
+  width: fit-content; */
+}
+
+.btn-translation{
+  margin: 3px;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background-color: teal;
+  padding: 6px;
+}
+
+@media (max-width: 600px) {
+  .textbox {
+    width: 80vw;
   }
-  to {
-    transform: rotate(360deg);
+
+  .translation-container{
+    position: none;
+    margin: 10%;
   }
 }
