@@ -2,7 +2,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+The site is hosted [here](https://devil39.github.io/translate/), but due to http requests blocked from a https origin, the website is not functionally active. To run it locally, follow the given below steps:
+
 In the project directory, you can run:
+
+### `npm install`
+
+After running above mentioned command make a file named .env and paste REACT_APP_API_URL="http://146.148.85.67/processWordJSON" in it. Now run npm start with details as mentioned below.
 
 ### `npm start`
 
