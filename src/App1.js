@@ -237,6 +237,7 @@ class App extends React.Component{
        this.setState({
         translation_list: []
       });
+      document.getElementById("textarea").focus();
      }
     else if(event.key==="Backspace")
      {
