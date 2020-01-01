@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/translate/static/css/main.e7f1d937.chunk.css",
-    "main.js": "/translate/static/js/main.645454ed.chunk.js",
-    "main.js.map": "/translate/static/js/main.645454ed.chunk.js.map",
-    "runtime-main.js": "/translate/static/js/runtime-main.b181b9ec.js",
-    "runtime-main.js.map": "/translate/static/js/runtime-main.b181b9ec.js.map",
-    "static/js/2.6c559f08.chunk.js": "/translate/static/js/2.6c559f08.chunk.js",
-    "static/js/2.6c559f08.chunk.js.map": "/translate/static/js/2.6c559f08.chunk.js.map",
-    "index.html": "/translate/index.html",
-    "precache-manifest.466df6e1f00433a43eebbc051c6407ee.js": "/translate/precache-manifest.466df6e1f00433a43eebbc051c6407ee.js",
-    "service-worker.js": "/translate/service-worker.js",
-    "static/css/main.e7f1d937.chunk.css.map": "/translate/static/css/main.e7f1d937.chunk.css.map",
-    "static/js/2.6c559f08.chunk.js.LICENSE": "/translate/static/js/2.6c559f08.chunk.js.LICENSE",
-    "static/media/App1.css": "/translate/static/media/3260107.fa831c18.jpg"
+    "main.css": "/transliteration/static/css/main.bc9cb9a3.chunk.css",
+    "main.js": "/transliteration/static/js/main.8e7dd1c9.chunk.js",
+    "main.js.map": "/transliteration/static/js/main.8e7dd1c9.chunk.js.map",
+    "runtime-main.js": "/transliteration/static/js/runtime-main.f7eebbe5.js",
+    "runtime-main.js.map": "/transliteration/static/js/runtime-main.f7eebbe5.js.map",
+    "static/js/2.41260051.chunk.js": "/transliteration/static/js/2.41260051.chunk.js",
+    "static/js/2.41260051.chunk.js.map": "/transliteration/static/js/2.41260051.chunk.js.map",
+    "index.html": "/transliteration/index.html",
+    "precache-manifest.1045def87e22d908f223e5f3d871e540.js": "/transliteration/precache-manifest.1045def87e22d908f223e5f3d871e540.js",
+    "service-worker.js": "/transliteration/service-worker.js",
+    "static/css/main.bc9cb9a3.chunk.css.map": "/transliteration/static/css/main.bc9cb9a3.chunk.css.map",
+    "static/js/2.41260051.chunk.js.LICENSE": "/transliteration/static/js/2.41260051.chunk.js.LICENSE",
+    "static/media/App1.css": "/transliteration/static/media/3260107.fa831c18.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.b181b9ec.js",
-    "static/js/2.6c559f08.chunk.js",
-    "static/css/main.e7f1d937.chunk.css",
-    "static/js/main.645454ed.chunk.js"
+    "static/js/runtime-main.f7eebbe5.js",
+    "static/js/2.41260051.chunk.js",
+    "static/css/main.bc9cb9a3.chunk.css",
+    "static/js/main.8e7dd1c9.chunk.js"
   ]
 }
