@@ -4,8 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 The site is hosted [here](https://devil39.github.io/translate/), but due to http requests blocked from a https origin, the website is not functionally active. Given is the glimpse of website:
 
-![Screenshot 1]('https://github.com/Devil39/transliteration/static/Screenshot1.png?raw=true')
-![Screenshot 2]('https://github.com/Devil39/transliteration/static/Screenshot2.png?raw=true')
+![Screenshot 1]('https://github.com/Devil39/transliteration/blob/master/static/Screenshot1.png?raw=true')
+![Screenshot 2]('https://github.com/Devil39/transliteration/blob/master/static/Screenshot2.png?raw=true')
 
 To run it locally, follow the given below steps:
 
