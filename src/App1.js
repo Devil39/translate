@@ -10,7 +10,7 @@ class App extends React.Component{
       text: "",
       translation: "",
       loading: false,
-      translation_list: "",
+      translation_list: [],
       disabled: false,
       lang: "hindi"
     };
@@ -109,12 +109,16 @@ class App extends React.Component{
   }
 
   translate = async (event)=>{
-    //console.log(event.key);
+    console.log(event.key);
     //console.log(String.fromCharCode(event.keyCode));
     //if((event.key>='a' && event.key<='z') || (event.key>='A' && event.key<='Z'))
     if(this.state.lang==="english")
      {
        return;
+     }
+    if(event.key==="Enter")
+     {
+       console.log(document.getElementById("textarea").value+"\n");
      }
     if(event.key.length===1 && ((event.key>='a' && event.key<='z') || (event.key>='A' && event.key<='Z')))
      {
@@ -124,6 +128,10 @@ class App extends React.Component{
         text: this.state.text+event.key
       });
       //var lastWord="";
+      var l=document.getElementById("textarea").value.split("\n").splice(-1)[0].split(" ").splice(-1)[0].length;
+      console.log(document.getElementById("textarea").value.split("\n").splice(-1)[0].split(" ").splice(-1)[0].length);
+      console.log(document.getElementById("textarea").value.length-l);
+      console.log(document.getElementById("textarea").value.substr(0, document.getElementById("textarea").value.length-l));
       console.log("(1)Sending Request for: "+this.state.text+event.key);
       this.fetchCall(this.state.text+event.key);
       /*fetch(`http://146.148.85.67/processWordJSON?inString=${this.state.text+event.key}&lang=${cookie.load('translateWebsite').lang}`,{
@@ -155,7 +163,7 @@ class App extends React.Component{
         console.log(err);
       });*/
      }
-    else if(event.key===' ' || event.key===',' || event.key==='.' || event.key==='!' || event.key==='?')
+    else if(event.key===' ' || event.key===',' || event.key==='.' || event.key==='!' || event.key==='?' || event.key==="Enter")
      {
        var specialChar=event.key;
        console.log("Setting the word");
@@ -165,35 +173,70 @@ class App extends React.Component{
        });
        var something=document.getElementById("textarea").value;
        var textValue=document.getElementById("textarea").value;
+       var wordToBeSent;
+       var l1=document.getElementById("textarea").value.split("\n").splice(-1)[0].split(" ").splice(-2)[0].length;
        //something[something.lenth-1=" ";
        something=this.replaceAt(something, something.length-1, " ");
-       console.log(something);
+       var l=something.split("\n").splice(-1)[0].split(" ").splice(-2)[0].length;
+       //console.log(something);
        //textValue=textValue.substr(0, textValue.length-1).split(" ");
        //console.log(textValue.splice(-1));
        //console.log(this.state.translation);
        //console.log(something.split(" "));
        //console.log(something.split(" ").length);
        //console.log(something.split(" ")[something.split(" ").length-2]);
-       console.log("(2)Sending Request for: "+something.split(event.key)[something.split(event.key).length-1]);
-       await this.fetchCall(something.split(" ")[something.split(" ").length-2], true);
-       await console.log(this.state.translation);
+       wordToBeSent=something.split(" ")[something.split(" ").length-2];
+       if(/\r|\n/.exec(something))//.split(" ")
+        {
+          //console.log(something);
+          //console.log(something.split("\n")[something.split("\n").length-1].replace(" ", ""));
+          //console.log(something.split(" ")[0].split("\n")[1]);//.split("/n")//.splice(-1)[0]
+          //console.log(something.split(" ").splice(-1)[0].includes("\n"));
+          //console.log(document.getElementById("textarea").value.substr(0, document.getElementById("textarea").value.length-l-1));
+          //console.log(document.getElementById("textarea").value.split("\n").splice(-1)[0].split(" ").splice(-2)[0]);
+          //console.log();
+          wordToBeSent=something.split("\n").splice(-1)[0].split(" ").splice(-2)[0];
+          //wordToBeSent=something.split("\n")[something.split("\n").length-1].replace(" ", "")//something.split(" ")[0].split("\n")[1]//something.split(" ").splice(-1)[0].includes("\n");
+        }
+       console.log("(2)Sending Request for: "+wordToBeSent);//something.split(event.key)[something.split(event.key).length-1]
+       await this.fetchCall(wordToBeSent, true);
+       //await console.log(this.state.translation);
        //something.split(" ")[something.split(" ").length-2]=this.state.translation;
        var a=something.split(" ")[something.split(" ").length-2].length+1;
        //something.slice(-a)="";
-       console.log(something.length-a);//something.slice(-a)
-       console.log(something.length-2);
-       console.log(something.substr(0, something.length-a)+this.state.translation+" ");
-       console.log(specialChar);
-       if(specialChar!==" ")
-        {
-          document.getElementById("textarea").value=something.substr(0, something.length-a)+this.state.translation+specialChar+" ";
-        }
+       //console.log(something.length-a);//something.slice(-a)
+       //console.log(something.length-2);
+       //console.log(something.substr(0, something.length-a)+this.state.translation+" ");
+       //console.log(specialChar);
+       //console.log(/\r|\n/.exec(something));
+       //console.log(this.state.translation_list[0]);
+      if(specialChar!==" " && specialChar!=="Enter")
+       {
+         //document.getElementById("textarea").value=something.substr(0, something.length-a)+this.state.translation_list[0]+specialChar+" ";
+         //console.log("Here!");
+         console.log(document.getElementById("textarea").value.substr(0, document.getElementById("textarea").value.length-l-1));
+         console.log(document.getElementById("textarea").value.substr(0, document.getElementById("textarea").value.length-l));
+         document.getElementById("textarea").value=document.getElementById("textarea").value.substr(0, document.getElementById("textarea").value.length-l-1)+" "+this.state.translation_list[0]+specialChar+" ";
+       }
+      else if(specialChar==="Enter")
+       {
+          console.log("Enter Pressed!");
+          //console.log(something.split("\n"));
+          //console.log(something.split("\n").splice(-1)[0].split(" ").splice(-1)[0].length);
+          document.getElementById("textarea").value=something.substr(0, something.length-a)+this.state.translation_list[0]+"\n";//document.getElementById("textarea").value.substr(0, document.getElementById("textarea").value.length-l-1)+this.state.translation_list[0]+"\n"
+          //console.log(document.getElementById("textarea").value.substr(0, document.getElementById("textarea").value.length-l-1)+this.state.translation_list[0]+"\n");
+       }
       else{
-        document.getElementById("textarea").value=something.substr(0, something.length-a)+this.state.translation+" ";
+        //console.log(document.getElementById("textarea").value.split("\n").splice(-1)[0].split(" ").splice(-2)[0]);
+        //console.log(document.getElementById("textarea").value.substr(0, document.getElementById("textarea").value.length-l-1)+this.state.translation_list[0]+" ");
+        document.getElementById("textarea").value=document.getElementById("textarea").value.substr(0, document.getElementById("textarea").value.length-l-1)+this.state.translation_list[0]+" ";//something.substr(0, something.length-a)+this.state.translation_list[0]+" ";
       }
        /*setTimeout(this.setState({
          disabled: false
        }), 100);*/
+       this.setState({
+        translation_list: []
+      });
      }
     else if(event.key==="Backspace")
      {
@@ -202,6 +245,32 @@ class App extends React.Component{
        if(textValue[textValue.length-1]===" " || textValue[textValue.length-1]==="," || textValue[textValue.length-1]==="." || textValue[textValue.length-1]==="?" || textValue[textValue.length-1]==="!")
         {
           return;
+        }
+       console.log(/\r|\n/.exec(document.getElementById("textarea").value.split(" ").splice(-1)[0]));
+       if(/\r|\n/.exec(document.getElementById("textarea").value.split(" ").splice(-1)[0])!==null)
+        {
+          //console.log(/\r|\n/.exec(document.getElementById("textarea").value.split(" ").splice(-1)[0]));
+          if(/\r|\n/.exec(document.getElementById("textarea").value.split(" ").splice(-1)[0]).length===1)
+          {
+            //console.log(words);
+            //console.log("\n"+words.join(" ")+" ");
+            l=document.getElementById("textarea").value.split("\n").splice(-1)[0].split(" ").splice(-2)[0].length;
+            console.log(document.getElementById("textarea").value.substr(0, document.getElementById("textarea").value.length-l-1)+"\n"+this.state.translation_list[0]+" ");
+            console.log(document.getElementById("textarea").value.split("\n").splice(-1)[0]);
+            textValue=document.getElementById("textarea").value.split("\n").splice(-1)[0];
+            console.log("(3)Sending Request for: "+textValue);
+            this.fetchCall(textValue);
+            this.setState({
+              text: textValue//document.getElementById("textarea").value//this.state.text.substr(0, this.state.text.length-1)
+            });
+            return;
+            //console.log("(3)Sending Request for: "+textValue);
+            //this.fetchCall(textValue);
+            //document.getElementById("textarea").value=document.getElementById("textarea").value.substr(0, document.getElementById("textarea").value.length-l-1)+"\n"+this.state.translation_list[0]+" ";
+            /*this.setState({
+              text: ""
+            });*/
+          }
         }
        //console.log("Backing Space");
        //console.log(this.state.text.substr(0, this.state.text.length-1));
@@ -259,9 +328,32 @@ class App extends React.Component{
     this.setState({
       text: words.join(" ")
     });
+    var l=document.getElementById("textarea").value.split("\n").splice(-1)[0].split(" ").splice(-2)[0].length;
     console.log(words.join(" "));
-    document.getElementById("textarea").value=words.join(" ")+" ";
+    console.log(/\r|\n/.exec(document.getElementById("textarea").value.split(" ").splice(-1)[0]));
+    console.log(document.getElementById("textarea").value.split("\n").splice(-1)[0].split(" "));//.splice(-3)[0]
+    console.log(document.getElementById("textarea").value.substr(0, document.getElementById("textarea").value.length-l-1)+"\n"+this.state.translation_list[0]+" ");
+    console.log(document.getElementById("textarea").value.split(" "));
+    if(/\r|\n/.exec(document.getElementById("textarea").value.split(" ").splice(-1)[0])!==null)
+     {
+      //console.log(/\r|\n/.exec(document.getElementById("textarea").value.split(" ").splice(-1)[0]));
+      if(/\r|\n/.exec(document.getElementById("textarea").value.split(" ").splice(-1)[0]).length===1)
+      {
+        console.log(words);
+        console.log("\n"+words.join(" ")+" ");
+        document.getElementById("textarea").value=document.getElementById("textarea").value.substr(0, document.getElementById("textarea").value.length-l-1)+"\n"+this.state.translation_list[0]+" ";
+        this.setState({
+          text: ""
+        });
+      }
+     }
+    else{
+      document.getElementById("textarea").value=words.join(" ")+" ";
+    }
     document.getElementById("textarea").focus();
+    this.setState({
+      translation_list: []
+    });
   }
 
   changeText=(event)=>{
@@ -377,13 +469,13 @@ class App extends React.Component{
                       {/*<p>Namastey Duniyaa!</p>*/}
                       <p>{this.state.translations}</p>
                       {
-                        this.state.translation_list!==""?this.state.translation_list.map((data)=>{
+                        this.state.translation_list.length!==0?this.state.translation_list.map((data)=>{
                           //console.log(data);
                           return(
                             <button type="button" id={data} className="btn-translation" value={data} onClick={this.translateWordChange}>{data}</button>
                           );
                         })
-                        :<div></div>
+                        :<button type="button" className="btn-translation"></button>
                       }
                    </div>
                 }
