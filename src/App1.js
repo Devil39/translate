@@ -54,6 +54,46 @@ class App extends React.Component{
     document.getElementById("textarea").focus();
   }
 
+  storeInDatabase=(wordToBeSent)=>{
+    console.log("<-------------------Yaa here!---------------->");
+    console.log(JSON.stringify({
+      "input": wordToBeSent,
+      "transliteration": this.state.translation_list[0],
+      "lang": cookie.load('translateWebsite').lang
+    }));
+    fetch("https://obscure-gorge-36873.herokuapp.com/insert",{
+        //fetch('https://xlit.quillpad.in/quillpad_backend2/processWordJSON?lang=tamil&inString=namast',{
+          method: "post",
+          headers: {
+            'Content-type':'application/json',
+            'Accept':'application/json',
+            "Access-Control-Allow-Origin": '*',
+            "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+          },
+          body: JSON.stringify({
+            "input": wordToBeSent,
+            "transliteration": this.state.translation_list[0],
+            "lang": cookie.load('translateWebsite').lang
+          })
+      })
+      .then(res=>res.json())
+      .then((data)=>{
+        console.log("Data:"+JSON.stringify(data));
+        if(data.success)
+          {
+            console.log("Something!");
+            // resolve();
+          }
+      });
+    // $.ajax({
+    //   type: 'POST', url: 'http://localhost:3030/api/purchase', data: {
+    //     email: "test@email.com"
+    //   },
+    // }).done(function(res) {
+    //   console.log(res);
+    // })
+  }
+
   fetchCall=(a, disable)=>{
     //Promise pr((){});
     //console.log("Sending Request For: "+a);
@@ -97,7 +137,14 @@ class App extends React.Component{
          }
         resolve();
         //document.getElementById("textarea").value=this.state.text;//+" "
-      }).catch((err)=>{
+      })
+      // .then(()=>{
+      //   if(!disable)
+      //    {
+      //      resolve();
+      //    }
+      // })
+      .catch((err)=>{
         console.log(err);
         this.setState({
           disabled: false
@@ -200,6 +247,7 @@ class App extends React.Component{
         }
        console.log("(2)Sending Request for: "+wordToBeSent);//something.split(event.key)[something.split(event.key).length-1]
        await this.fetchCall(wordToBeSent, true);
+       await this.storeInDatabase(wordToBeSent);
        //await console.log(this.state.translation);
        //something.split(" ")[something.split(" ").length-2]=this.state.translation;
        var a=something.split(" ")[something.split(" ").length-2].length+1;
