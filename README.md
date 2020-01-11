@@ -2,6 +2,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+# Backend:
+
+The backend is built in NodeJs and is hosted [here](https://obscure-gorge-36873.herokuapp.com/). To run the backend, after cloning the repo enter "cd Backend/taskonefourthlabsbackend" into the project directory and run "npm install".
+
+After the installation is completed, enter "npm start". The backend will start listening on port 8010.
+
+# Frontend:
+
 The site is hosted [here](https://devil39.github.io/transliteration/), but due to http requests blocked from a https origin, the website is not functionally active. Given is the glimpse of website:
 
 ![Screenshot from 2020-01-01 18-33-32](https://user-images.githubusercontent.com/49019259/71641799-98afe600-2cc7-11ea-8e76-08181cda29ea.png)
