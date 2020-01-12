@@ -1,14 +1,14 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Available Scripts
 
-# Backend:
+### Backend:
 
 The backend is built in NodeJs and is hosted [here](https://obscure-gorge-36873.herokuapp.com/). To run the backend, after cloning the repo enter "cd Backend/taskonefourthlabsbackend" into the project directory and run "npm install".
 
 After the installation is completed, enter "npm start". The backend will start listening on port 8010.
 
-# Frontend:
+### Frontend:
 
 The site is hosted [here](https://devil39.github.io/transliteration/), but due to http requests blocked from a https origin, the website is not functionally active. Given is the glimpse of website:
 
