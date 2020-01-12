@@ -84,7 +84,7 @@ body{
   .translation-container{
     /*position: absolute;*/
     margin-top: 10px;
-    /*border: 2px solid red;*/
+    /* border: 2px solid red; */
     text-align: center;
     /*padding: 15px;*/
     display: flex;
@@ -121,6 +121,13 @@ body{
     background-color: black;
     color: white;
     padding: 6px;
+  }
+
+  .download-btn-container{
+    width: 100vw;
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: center;
   }
   
   @media (max-width: 800px) {

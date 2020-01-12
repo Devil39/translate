@@ -16,6 +16,10 @@ class App extends React.Component{
     };
   }
 
+  downloadCSV=()=>{
+    window.open(`https://obscure-gorge-36873.herokuapp.com/download?lang=${cookie.load('translateWebsite').lang}`);
+  }
+
   replaceAt=(string, index, replacement)=>{
     return string.substr(0, index) + replacement+ string.substr(index + replacement.length);
   }
@@ -529,6 +533,9 @@ class App extends React.Component{
                    </div>
                 }
               </div>
+            </div>
+            <div className="download-btn-container">
+              <button type="button" className="btn-lang" onClick={this.downloadCSV}>Dowload csv for current language</button>
             </div>
           </div>
           
