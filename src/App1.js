@@ -18,6 +18,7 @@ class App extends React.Component{
 
   downloadCSV=()=>{
     window.open(`https://obscure-gorge-36873.herokuapp.com/download?lang=${cookie.load('translateWebsite').lang}`);
+    // window.open(`http://localhost:8010/download1?lang=${cookie.load('translateWebsite').lang}`);
   }
 
   replaceAt=(string, index, replacement)=>{
@@ -153,6 +154,7 @@ class App extends React.Component{
         this.setState({
           disabled: false
          });
+         document.getElementById("textarea").focus();
          //alert("Error!");
         reject();
       });
@@ -214,7 +216,7 @@ class App extends React.Component{
         console.log(err);
       });*/
      }
-    else if(event.key===' ' || event.key===',' || event.key==='.' || event.key==='!' || event.key==='?' || event.key==="Enter")
+    else if(event.key===' ' || event.key===',' || event.key==='.' || event.key==='!' || event.key==='?' || event.key==="Enter" || event.key===';')
      {
        var specialChar=event.key;
        console.log("Setting the word");
@@ -302,7 +304,7 @@ class App extends React.Component{
        console.log(/\r|\n/.exec(document.getElementById("textarea").value.split(" ").splice(-1)[0]));
        if(/\r|\n/.exec(document.getElementById("textarea").value.split(" ").splice(-1)[0])!==null)
         {
-          //console.log(/\r|\n/.exec(document.getElementById("textarea").value.split(" ").splice(-1)[0]));
+          console.log(/\r|\n/.exec(document.getElementById("textarea").value.split(" ").splice(-1)[0]));
           if(/\r|\n/.exec(document.getElementById("textarea").value.split(" ").splice(-1)[0]).length===1)
           {
             //console.log(words);
@@ -339,6 +341,9 @@ class App extends React.Component{
        //this.fetchCall(document.getElementById("textarea").value);
        console.log("(3)Sending Request for: "+textValue);
        this.fetchCall(textValue);
+       this.setState({
+         text: textValue
+       });
        /*fetch(`http://146.148.85.67/processWordJSON?inString=${document.getElementById("textarea").value}&lang=${cookie.load('translateWebsite').lang}`,{
         //fetch('https://xlit.quillpad.in/quillpad_backend2/processWordJSON?lang=tamil&inString=namast',{
           method: "get",
@@ -374,7 +379,8 @@ class App extends React.Component{
     //console.log(event);
     //console.log(event.target.value);
     this.setState({
-      translation: event.target.value
+      translation: event.target.value,
+      text: ""
     });
     var words=document.getElementById("textarea").value.split(" ");
     words[words.length-1]=event.target.value;
@@ -395,6 +401,7 @@ class App extends React.Component{
         console.log(words);
         console.log("\n"+words.join(" ")+" ");
         document.getElementById("textarea").value=document.getElementById("textarea").value.substr(0, document.getElementById("textarea").value.length-l-1)+"\n"+this.state.translation_list[0]+" ";
+        console.log("Set State 1");
         this.setState({
           text: ""
         });
@@ -404,8 +411,10 @@ class App extends React.Component{
       document.getElementById("textarea").value=words.join(" ")+" ";
     }
     document.getElementById("textarea").focus();
+    console.log("Set State 2");
     this.setState({
-      translation_list: []
+      translation_list: [],
+      text: ""
     });
   }
 
